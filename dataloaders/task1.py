@@ -9,7 +9,7 @@ def parse_e_c(data_file):
         y: a list of lists corresponding to the emotion labels of the tweets
 
     """
-    with open(data_file, 'r') as fd:
+    with open(data_file, 'r', encoding='utf-8') as fd:
         data = [l.strip().split('\t') for l in fd.readlines()][1:]
     X = [d[1] for d in data]
     # dict.values() does not guarantee the order of the elements
@@ -27,7 +27,7 @@ def parse_oc(data_file, label_format='tuple'):
         y: a list of (affect dimension, v) tuples corresponding to
          the ordinal classification targets of the tweets
     """
-    with open(data_file, 'r') as fd:
+    with open(data_file, 'r', encoding='utf-8') as fd:
         data = [l.strip().split('\t') for l in fd.readlines()][1:]
     X = [d[1] for d in data]
     y = [(d[2], int(d[3].split(':')[0])) for d in data]
@@ -50,7 +50,7 @@ def parse_reg(data_file, label_format='tuple'):
         y: a list of (affect dimension, v) tuples corresponding to
          the regression targets of the tweets
     """
-    with open(data_file, 'r') as fd:
+    with open(data_file, 'r', encoding='utf-8') as fd:
         data = [l.strip().split('\t') for l in fd.readlines()][1:]
         data = [d for d in data if "mystery" not in d[0]]
     X = [d[1] for d in data]

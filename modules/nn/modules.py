@@ -145,6 +145,7 @@ class Embed(nn.Module):
         Returns: the logits for each class
 
         """
+        x = x.type(torch.LongTensor)
         embeddings = self.embedding(x)
 
         if self.noise.stddev > 0:

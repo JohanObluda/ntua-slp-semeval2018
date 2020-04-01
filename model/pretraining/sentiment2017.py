@@ -3,6 +3,11 @@ Model for sentiment classification (positive,negative,neutral)
 for Semeval2017 TaskA
 """
 import os
+import sys
+sys.path.append('.')
+sys.path.append('..')
+sys.path.append('../../')
+sys.path.append('../../../')
 
 from sklearn.model_selection import train_test_split
 

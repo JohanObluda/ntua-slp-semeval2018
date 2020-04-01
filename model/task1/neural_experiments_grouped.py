@@ -25,8 +25,7 @@ if args.task == 1:
         for emotion in ["joy", "sadness", "fear", "anger"]:
             train_ei_reg(emotion=emotion)
             train_ei_reg(emotion=emotion, pretrained=pretrained, finetune=True)
-            train_ei_reg(emotion=emotion, pretrained=pretrained,
-                         finetune=False)
+            train_ei_reg(emotion=emotion, pretrained=pretrained, finetune=False)
 elif args.task == 2:
 
     for i in range(10):

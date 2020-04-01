@@ -377,6 +377,21 @@ class Trainer:
          the training process.
 
         Args:
+            model (nn.Module): the pytorch model
+
+            optimizer ():
+            
+            pipeline (callable): a callback function, which defines the training
+                pipeline. it must return 3 things (outputs, labels, loss):
+                    - outputs: the outputs (predictions) of the model
+                    - labels: the gold labels
+                    - loss: the loss
+
+            config (): the config instance with the hyperparams of the model
+
+            task (string): you can choose between {"clf", "reg"},
+                for classification and regression respectively.
+
             use_exp (bool): if True, use the integrated experiment
                 manager. In order to utilize the visualizations provided
                 by the experiment manager you should:
@@ -385,17 +400,6 @@ class Trainer:
 
                     https://github.com/facebookresearch/visdom#usage
 
-            model (nn.Module): the pytorch model
-            optimizer ():
-            pipeline (callable): a callback function, which defines the training
-                pipeline. it must return 3 things (outputs, labels, loss):
-                    - outputs: the outputs (predictions) of the model
-                    - labels: the gold labels
-                    - loss: the loss
-
-            config (): the config instance with the hyperparams of the model
-            task (string): you can choose between {"clf", "reg"},
-                for classification and regression respectively.
             metrics (dict): a dictionary with the metrics that will be used
                 for evaluating the performance of the model.
                 - key: string with the name of the metric.
@@ -403,7 +407,9 @@ class Trainer:
                     score.
             eval_train (bool): if True, the at the end of each epoch evaluate
                 the performance of the model on the training dataset.
+
             early_stopping (EarlyStop):
+
             checkpoint (Checkpoint):
         """
         self.use_exp = use_exp

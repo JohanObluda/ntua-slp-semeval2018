@@ -1,21 +1,12 @@
-#############################################################################################
-## Author: Tung Son Tran
-## Modified after C.Baziotis et. al.,
-############################################################################################# 
-
 import numpy
 from scipy.stats import pearsonr
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score, recall_score, precision_score, \
     accuracy_score, jaccard_similarity_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import Normalizer
-from sklearn.linear_model import SGDRegressor as SGDR
-from sklearn.linear_model import SGDClassifier as SGDC
 from sklearn.svm import SVR
-from sklearn.linear_model import LogisticRegression as LoR
-from sklearn.svm import SVC
-from sklearn.ensemble import RandomForestRegressor as RFR
 
 from modules.sklearn.NBOWVectorizer import NBOWVectorizer
 
@@ -54,16 +45,11 @@ def eval_mclf(y, y_hat):
 
 
 def bow_model(task, max_features=10000):
-    if task == "SGDR":
-        algo = SGDR()
-    elif task == "SVR":
-        algo = SVR(kernel='rbf')
-    elif task == "RFR":
-        algo = RFR()
-    elif task == "LoR":
-        algo = LoR()
-    elif task == "SVC":
-        algo = SVC()   
+    if task == "clf":
+        algo = LogisticRegression(C=0.6, random_state=0,
+                                  class_weight='balanced')
+    elif task == "reg":
+        algo = SVR(kernel='linear', C=0.6)
     else:
         raise ValueError("invalid task!")
 
@@ -88,16 +74,11 @@ def bow_model(task, max_features=10000):
 
 
 def nbow_model(task, embeddings, word2idx):
-    if task == "SGDR":
-        algo = SGDR()
-    elif task == "SVR":
-        algo = SVR(kernel='rbf')
-    elif task == "RFR":
-        algo = RFR()
-    elif task == "LoR":
-        algo = LoR()
-    elif task == "SVC":
-        algo = SVC(kernel='rbf')
+    if task == "clf":
+        algo = LogisticRegression(C=0.6, random_state=0,
+                                  class_weight='balanced')
+    elif task == "reg":
+        algo = SVR(kernel='linear', C=0.6)
     else:
         raise ValueError("invalid task!")
 
